@@ -1,0 +1,14 @@
+#	ignore build files
+**/build/
+**/Debug
+**/.vs
+**/x64
+**/out
+**/.build
+**.sln
+**.vcxproj
+**.vcxproj.**
+**.user
+**/packages
+**packages.config
+**/AdventOf.F74CC3BE
