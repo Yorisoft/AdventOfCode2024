@@ -3,6 +3,7 @@
 #include<sstream>
 #include<vector>
 #include<algorithm>
+#include<map>
 
 
 int calculateDiffSum(std::vector<int>&, std::vector<int>& );
@@ -11,6 +12,7 @@ void openInputFile(std::ifstream&, std::string&);
 void printLists(std::vector<int>&, std::vector<int>&);
 
 int main() {
+//------------------------------------------- Part 1 -----------------------------------------------//
 	// open input from file
 	std::ifstream inputFile;
 	std::string fileName = "input.txt";
@@ -45,7 +47,37 @@ int main() {
 
 	// calculate the sum of differences
 	int answer = calculateDiffSum(left_list, right_list);
-	std::cout << "We calculate the answer to be: " << answer << std::endl;
+	std::cout << "We calculate the answer to task 1 to be: " << answer << std::endl;
+
+
+//------------------------------------------- Part 2 -----------------------------------------------//
+	// Task 2!!
+	// for each element in right_list,
+	// add it to the map and increase its value +1
+	// key = list[i], value = accurance
+	// for each element in left_list
+	// if it exist on the map
+	// find it on the map and get its occurance, 
+	// multiple these two value and add to similarity score
+
+	std::map<int, int> occurrence_map;
+
+	for (int number : right_list) {
+		occurrence_map[number]++;
+	}
+	// print results thus far.	
+	for (auto& pair : occurrence_map) {
+		std::cout << "Number: " << pair.first << " , Occurrences: " << pair.second << std::endl;
+	}
+	std::cin.get();
+
+	float similarity_score = 0;
+	for (int number : left_list) {
+		if (occurrence_map.find(number) != occurrence_map.end()) {
+			similarity_score += (occurrence_map[number] * number);
+		}
+	}
+	std::cout << "We calculate the answer to task 2 to be: " << std::fixed << similarity_score << std::endl;
 
 	std::cin.get();
 	return 0;
