@@ -18,7 +18,7 @@ This repository contains my personal solutions to the Advent of Code 2024 puzzle
 
 ## Language and Tools
 
-For this project, I'm using C++, along with any supporting libraries or tools that I find helpful. This is a learning experience, so you'll notice a variety of techniques and approaches as I work through the puzzles. Heck, I might even notice me switch up programming languages here and there. 
+For this project, I'm using C++, along with any supporting libraries or tools that I find helpful. This is a learning experience, so you'll notice a variety of techniques and approaches as I work through the puzzles. Heck, you might even notice me switch up programming languages here and there. 
 
 ## Why Participate in Advent of Code?
 
