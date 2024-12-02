@@ -81,6 +81,11 @@ bool isSafe(const std::vector<int>& levels) {
 bool canBeMadeSafe(const std::vector<int>& levels) {
 	for (size_t i = 0; i < levels.size(); ++i) {
 		std::vector<int> modifiedLevels = levels;
+
+		// if we remove 1 element and the level is safe without it, then its okay to return true
+		// if not, there might be an element further in the level that makes it unsafe.
+		// this loop will skip the if statement untill it reaches that element and removes it.
+		// at that point, if it is safe then return true. else return false if no variation is safe. 
 		modifiedLevels.erase(modifiedLevels.begin() + i);
 		if (isSafe(modifiedLevels)) {
 			return true;
