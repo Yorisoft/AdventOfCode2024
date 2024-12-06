@@ -3,6 +3,9 @@
 #include<regex>
 #include<iomanip>
 
+double taskOne(std::vector<std::string>*);
+double taskTwo(std::vector<std::string>*);
+
 int main() {
 
 	std::vector<std::string>* input;
@@ -11,10 +14,23 @@ int main() {
 	std::string fileName = "input.txt";
 	input = data->getInput(fileName);
 	data->printInput(input);
-
 	std::cin.get();
 
-	// ------------------------------- TASK 1 --------------------------------- //
+	double answer = taskOne(input); 
+	std::cout << std::fixed << std::setprecision(0);
+	std::cout << "We calculate the answer for Day 3, Task 1 to be: " << answer << std::endl;
+	std::cin.get();
+	
+	answer = taskTwo(input);
+	std::cout << std::fixed << std::setprecision(0);
+	std::cout << "We calculate the answer for Day 3, Task 2 to be: " << answer << std::endl;
+	std::cin.get();
+
+	return 0;
+}
+double taskOne(std::vector<std::string>* input) {
+
+	// ------------------------------- TASK 2 --------------------------------- //
 
 	// create a regex expression that matches what we're searching for 
 	// for each string in input, 
@@ -53,16 +69,54 @@ int main() {
 
 		}
 	}
+	return answer;
+}
 
-	std::cout << std::fixed << std::setprecision(0);
-	std::cout << "We calculate the answer for Day 3, Task 2 to be: " << answer << std::endl;
-
-	std::cin.get();
-
-
-
+double taskTwo(std::vector<std::string>* input) {
 
 	// ------------------------------- TASK 2 --------------------------------- //
+	// clean up the data by removing anything between a don't and a do by:
+	// for each string in vector, find the substring up to but not including don't, 
+	// store in string add to new vector of string. once done, at last vector to vector of vector of strings. 
+	// move pos 5 steps forward and search again
+	// when done, for each vector string in vector of vector string, add all string together.
+	// return clean vector of strings
+	//
 
-	return 0;
+	std::regex pattern(R"(do\(\)|don't\(\))");
+	std::vector<std::string> newInput;
+
+	for (std::string line : *input) {
+		std::sregex_iterator rit = std::sregex_iterator(line.begin(), line.end(), pattern);
+		std::sregex_iterator ritEnd = std::sregex_iterator();
+
+		bool mode = true;
+		size_t pos = 0;
+		std::string cleanSubStr;
+
+		for (auto i = rit; i != ritEnd; i++) {
+			if (mode) {
+				cleanSubStr += line.substr(pos, i->position() - pos);
+			}
+
+			if (i->str() == "do()") {
+				mode = true;
+			}
+			else if (i->str() == "don't()"){
+				mode = false;
+			}
+			pos = i->position();
+		}
+		if( pos < line.size() && mode) {
+			// If "do" is not found, skip to the end of the line
+			cleanSubStr += line.substr(pos);
+
+		}	
+		newInput.push_back(cleanSubStr);
+	} 
+	Input data;
+	data.printInput(&newInput);
+
+	double answer = taskOne(&newInput);
+	return answer;
 }
