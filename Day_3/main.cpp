@@ -30,7 +30,7 @@ int main() {
 }
 double taskOne(std::vector<std::string>* input) {
 
-	// ------------------------------- TASK 2 --------------------------------- //
+	// ------------------------------- TASK 1 --------------------------------- //
 
 	// create a regex expression that matches what we're searching for 
 	// for each string in input, 
@@ -105,18 +105,20 @@ double taskTwo(std::vector<std::string>* input) {
 			else if (i->str() == "don't()"){
 				mode = false;
 			}
-			pos = i->position();
+			pos = i->position() + i->length();
 		}
 		if( pos < line.size() && mode) {
-			// If "do" is not found, skip to the end of the line
+			// If no instructions were found
+			// or "do()" was the last instrution
+			// AND we have not reached the end of current substring
+			// add the current substring
 			cleanSubStr += line.substr(pos);
 
 		}	
+		std::cout << "Original: " << std::endl << line << std::endl;
+		std::cout << "Cleaned : " << std::endl << cleanSubStr << std::endl;
 		newInput.push_back(cleanSubStr);
 	} 
-	Input data;
-	data.printInput(&newInput);
 
-	double answer = taskOne(&newInput);
-	return answer;
+	return taskOne(&newInput);
 }
