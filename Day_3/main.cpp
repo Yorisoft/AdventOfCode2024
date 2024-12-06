@@ -31,7 +31,6 @@ int main() {
 double taskOne(std::vector<std::string>* input) {
 
 	// ------------------------------- TASK 1 --------------------------------- //
-
 	// create a regex expression that matches what we're searching for 
 	// for each string in input, 
 	// search for regex in string and save it in matches
@@ -61,12 +60,7 @@ double taskOne(std::vector<std::string>* input) {
 			int num1 = std::stoi(match_str.substr(start1, end1 - start1));
 			int num2 = std::stoi(match_str.substr(start2, end2 - start2));
 
-			// if I want code to be short, it would be like this 
-			//int num1 = std::stoi(match.substr(4, (match.find(",")) - 4));
-			//int num2 = std::stoi(match.substr((match.find(",") + 1), (match.find(")")) - match.find(",") - 1));
-
 			answer += (num1 * num2);
-
 		}
 	}
 	return answer;
@@ -75,22 +69,31 @@ double taskOne(std::vector<std::string>* input) {
 double taskTwo(std::vector<std::string>* input) {
 
 	// ------------------------------- TASK 2 --------------------------------- //
-	// clean up the data by removing anything between a don't and a do by:
-	// for each string in vector, find the substring up to but not including don't, 
-	// store in string add to new vector of string. once done, at last vector to vector of vector of strings. 
-	// move pos 5 steps forward and search again
-	// when done, for each vector string in vector of vector string, add all string together.
-	// return clean vector of strings
-	//
-
+	// This task kicked my butt for 3 days straight..
+	// To be fair it was in major part due to missundestanding of the task.
+	// Things I didnt know up to this point: 
+	// The input is 1 big string, not 6 seperate strings.
+	// The program doesnt reset to enables at the start of every string/input ( cause its only 1 string/input )
+	// All instances of do or don't count, not just most recent. Not sure what instructions meant by that. 
+	// 
+	// So.. Solution
+	// Same as task 1, 
+	// set mode to true, pos to 0
+	// create new string newInput
+	// find all matching instances of the pattern do() or don't()
+	// For each instance, if mode is true add that substring from pos to match.position to newInput
+	// update mode to true if match is do(), update it to false if match is don't()
+	// update position. end for loop
+	// if pos is not to the end of string, and mode is true that means no other instructions where found 
+	// add remainder of string to newInput
 	std::regex pattern(R"(do\(\)|don't\(\))");
 	std::vector<std::string> newInput;
+	bool mode = true;
 
 	for (std::string line : *input) {
 		std::sregex_iterator rit = std::sregex_iterator(line.begin(), line.end(), pattern);
 		std::sregex_iterator ritEnd = std::sregex_iterator();
-
-		bool mode = true;
+		
 		size_t pos = 0;
 		std::string cleanSubStr;
 
