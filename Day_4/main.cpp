@@ -6,8 +6,13 @@
 class Solution {
 private: 	
     std::string pattern = "XMAS";
+	std::vector<std::string> directions = {
+		"up/left", "up", "up/right",
+		"left", "right",
+		"down/left", "down", "down/right"
+	};
 
-	double dfs(std::vector<std::vector<char>>* input, int r, int c, int index) {
+	double dfs(std::vector<std::vector<char>>* input, int r, int c, int index, std::string direction) {
 		if (index == pattern.size() - 1) // index is equal to last index of pattern, meaning we've gotten to the end without missmatch.
 			return 1;
 		if (r >= (*input).size() || c >= (*input)[0].size() || r < 0 || c < 0) // if true, we're out of bounds 
@@ -22,30 +27,40 @@ private:
 		// we found a match
 
 		double result = 0;
-		if ((*input)[r][c] == pattern[index]) {
-			// dfs up
-			result += dfs(input, r - 1, c, index + 1);
 
+		if ((*input)[r][c] == pattern[index]){
+			if (direction == "up") {
+				// dfs up
+				result += dfs(input, r - 1, c, index + 1, "up");
+			}
 			// dfs up/right
-			 result += dfs(input, r - 1, c + 1, index + 1);
-
+			if (direction == "up/right") {
+				result += dfs(input, r - 1, c + 1, index + 1, "up/right");
+			}
 			// dfs right
-			 result += dfs(input, r, c + 1, index + 1);
-
+			if (direction == "right") {
+				result += dfs(input, r, c + 1, index + 1, "right");
+			}
 			// dfs right/down
-			 result += dfs(input, r + 1, c + 1, index + 1);
-
+			if (direction == "down/right") {
+				result += dfs(input, r + 1, c + 1, index + 1, "down/right");
+			}
 			// dfs down
-			 result += dfs(input, r + 1, c, index + 1);
-
+			if (direction == "down") {
+				result += dfs(input, r + 1, c, index + 1, "down");
+			}
 			// dfs down/left
-			 result += dfs(input, r + 1, c  - 1, index + 1);
-
+			if (direction == "down/left") {
+				result += dfs(input, r + 1, c - 1, index + 1, "down/left");
+			}
 			// dfs left
-			 result += dfs(input, r, c - 1, index + 1);
-			
+			if (direction == "left") {
+				result += dfs(input, r, c - 1, index + 1, "left");
+			}
 			// dfs left/up
-			 result += dfs(input, r - 1, c - 1, index + 1);
+			if (direction == "up/left") {
+				result += dfs(input, r - 1, c - 1, index + 1, "up/left");
+			}
 		}	
 		
 		return result;
@@ -60,7 +75,10 @@ public:
 		std::set<std::pair<int, int>> visted_index; 
 		for (int r = 0; r < input->size(); r++) {
 			for (int c = 0; c < (*input)[0].size(); c++) {
-				answer += dfs(input, r, c, 0);
+				// saerch in all directions for each element. BUT maintain the direction per search.
+				for (int i = 0; i < directions.size(); i++) {
+					answer += dfs(input, r, c, 0, directions[i]);
+				}
 			}
 		}
 		return answer;
