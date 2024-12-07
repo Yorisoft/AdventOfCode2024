@@ -1,4 +1,4 @@
-# Advent of Code 2024
+﻿# <p align="center"> 🎄 Advent of Code 2024 🎄 </p>
 
 Welcome to my Advent of Code 2024 project repository! This project is part of my personal journey in enhancing my programming skills and solving fun, holiday-themed coding puzzles. 
 
@@ -16,7 +16,7 @@ This repository contains my personal solutions to the Advent of Code 2024 puzzle
 - My Solution: Includes executable code solving the day's puzzle.
 - Notes and Commentary: Any thoughts or explanations of the approach I used.
 
-## Language and Tools
+## Language and Tools 🧑‍💻
 
 For this project, I'm using C++, along with any supporting libraries or tools that I find helpful. This is a learning experience, so you'll notice a variety of techniques and approaches as I work through the puzzles. Heck, you might even notice me switch up programming languages here and there. 
 
