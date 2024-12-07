@@ -17,6 +17,7 @@ int main(int argc, char* argv[]) {
 
 	std::cout << std::fixed << std::setprecision(0);
 	std::cout << "We calculate the answer to Day 4, Task 1 to be: " << answer << std::endl;
+	std::cin.get();
 
 }
 
@@ -51,29 +52,33 @@ int dfs(std::vector<std::vector<char>>* input, int r, int c, int index, std::str
 	// if our current pos is equal to the size of pattern 
 	// AND input[r][c] == the last char in pattern, 
 	// we found a match
+
+	int result = 0;
 	if ((*input)[r][c] == pattern[index]) {
 		// dfs up
-		return dfs(input, r - 1, c, index + 1, pattern);
+		result += dfs(input, r - 1, c, index + 1, pattern);
 
 		// dfs up/right
-		return dfs(input, r - 1, c + 1, index + 1, pattern);
+		 result += dfs(input, r - 1, c + 1, index + 1, pattern);
 
 		// dfs right
-		return dfs(input, r, c + 1, index + 1, pattern);
+		 result += dfs(input, r, c + 1, index + 1, pattern);
 
 		// dfs right/down
-		return dfs(input, r + 1, c + 1, index + 1, pattern);
+		 result += dfs(input, r + 1, c + 1, index + 1, pattern);
 
 		// dfs down
-		return dfs(input, r + 1, c, index + 1, pattern);
+		 result += dfs(input, r + 1, c, index + 1, pattern);
 
 		// dfs down/left
-		return dfs(input, r + 1, c  - 1, index + 1, pattern);
+		 result += dfs(input, r + 1, c  - 1, index + 1, pattern);
 
 		// dfs left
-		return dfs(input, r, c - 1, index + 1, pattern);
+		 result += dfs(input, r, c - 1, index + 1, pattern);
 		
 		// dfs left/up
-		return dfs(input, r - 1, c - 1, index + 1, pattern);
+		 result += dfs(input, r - 1, c - 1, index + 1, pattern);
 	}	
+	
+	return result;
 }
