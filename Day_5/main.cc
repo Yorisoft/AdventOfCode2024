@@ -27,6 +27,33 @@ public:
         }
         return result;
     }
+
+double taskTwo(std::vector<std::pair<int, int>>* input_1, std::vector<std::vector<int>>* input_2) {
+    double result = 0;
+    for (auto& pages : *input_2) {
+        bool wasReordered = false;
+        bool swapped = false;
+        do {
+            for (auto& rule : *input_1) {
+                std::vector<int>::iterator ruleOne = std::find(pages.begin(), pages.end(), rule.first);
+                std::vector<int>::iterator ruleTwo = std::find(pages.begin(), pages.end(), rule.second);
+                
+                if ((ruleOne != pages.end() && ruleTwo != pages.end()) && !(ruleOne < ruleTwo)) {
+                    wasReordered = true;
+                    swapped = true;
+                    std::swap(*ruleOne, *ruleTwo);
+                }
+                else {
+                    swapped = false;
+                }
+            }
+        } while(swapped);
+        if (wasReordered) {
+            result += pages[pages.size()/2];  
+        } 
+    }
+    return result;
+}
 };
 
 int main(int argc, char* argv[]) {
@@ -47,6 +74,11 @@ int main(int argc, char* argv[]) {
     
     int answer = solution->taskOne(input_1, input_2);
 
+    std::cout << std::fixed << std::setprecision(0);
+    std::cout << "We calculate the answer to Day 5, Task 1 to be: " << answer << std::endl;
+    std::cin.get();
+
+    answer = solution->taskTwo(input_1, input_2);
     std::cout << std::fixed << std::setprecision(0);
     std::cout << "We calculate the answer to Day 5, Task 1 to be: " << answer << std::endl;
     std::cin.get();
