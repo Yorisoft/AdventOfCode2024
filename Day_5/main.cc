@@ -33,21 +33,21 @@ double taskTwo(std::vector<std::pair<int, int>>* input_1, std::vector<std::vecto
     for (auto& pages : *input_2) {
         bool wasReordered = false;
         bool swapped = false;
+        do {
             for (auto& rule : *input_1) {
-                do {
-                    std::vector<int>::iterator ruleOne = std::find(pages.begin(), pages.end(), rule.first);
-                    std::vector<int>::iterator ruleTwo = std::find(pages.begin(), pages.end(), rule.second);
-                    
-                    if ((ruleOne != pages.end() && ruleTwo != pages.end()) && !(ruleOne < ruleTwo)) {
-                        wasReordered = true;
-                        swapped = true;
-                        std::swap(*ruleOne, *ruleTwo);
-                    }
-                    else {
-                        swapped = false;
-                    }
-                } while(swapped);
+                std::vector<int>::iterator ruleOne = std::find(pages.begin(), pages.end(), rule.first);
+                std::vector<int>::iterator ruleTwo = std::find(pages.begin(), pages.end(), rule.second);
+                
+                if ((ruleOne != pages.end() && ruleTwo != pages.end()) && !(ruleOne < ruleTwo)) {
+                    wasReordered = true;
+                    swapped = true;
+                    std::swap(*ruleOne, *ruleTwo);
+                }
+                else {
+                    swapped = false;
+                }
             }
+        } while(swapped);
         if (wasReordered) {
             result += pages[pages.size()/2];  
         } 
