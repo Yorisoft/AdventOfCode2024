@@ -46,7 +46,6 @@ private:
 			(up_right == 'M' && down_left == 'S' || up_right == 'S' && down_left == 'M')) {
 			return 1;
 		} 
-
 		return 0;
 	}
 
@@ -71,7 +70,7 @@ public:
 		double answer = 0;
 		for (int r = 0; r < input->size(); r++) {
 			for (int c = 0; c < (*input)[0].size(); c++) {
-				// search in all directions for each element. BUT maintain the direction per search.
+				// If the current cell is A, search in an X pattern for the raimain char..
 				if((*input)[r][c] == 'A'){
 					answer += xSearch(input, r, c);
 				}
@@ -100,6 +99,5 @@ int main(int argc, char* argv[]) {
 	std::cout << std::fixed << std::setprecision(0);
 	std::cout << "We calculate the answer to Day 4, Task 2 to be: " << answer << std::endl;
 	std::cin.get();
-
 }
 
