@@ -14,4 +14,4 @@
 **/AdventOf.F74CC3BE
 
 # ignoring input files
-**/input.txt
+**/input**.txt
