@@ -1,3 +1,5 @@
+/* https://adventofcode.com/2024/day/5 */ 
+
 #include "load_input_utils.cc"
 #include "algorithm"
 #include<iomanip>
@@ -30,32 +32,27 @@ public:
     double taskTwo(std::vector<std::pair<int, int>>* input_1, std::vector<std::vector<int>>* input_2) {
         double result = 0;
         for (auto& pages : *input_2) {
-            bool swapped = false;
-            
-            for (auto& rule : *input_1) {
-                std::vector<int>::iterator ruleOne = std::find(pages.begin(), pages.end(), rule.first);
-                std::vector<int>::iterator ruleTwo = std::find(pages.begin(), pages.end(), rule.second);
-                
-                if ((ruleOne != pages.end() && ruleTwo != pages.end()) && !(ruleOne < ruleTwo)) {
-                    swapped = true;
+            bool swapped = true, everSwapped = false;
+            while (swapped) {
+                swapped = false;
+                for (auto& rule : *input_1) {
+                    std::vector<int>::iterator ruleOne = std::find(pages.begin(), pages.end(), rule.first);
+                    std::vector<int>::iterator ruleTwo = std::find(pages.begin(), pages.end(), rule.second);
+                    
+                    if ((ruleOne != pages.end() && ruleTwo != pages.end()) && !(ruleOne < ruleTwo)) {
+                        swapped = true;
 
-                    int indexOne = std::distance(pages.begin(), ruleOne);
-                    int indexTwo = std::distance(pages.begin(), ruleTwo);
+                        int indexOne = std::distance(pages.begin(), ruleOne);
+                        int indexTwo = std::distance(pages.begin(), ruleTwo);
 
-                    for (int i = indexTwo; i < indexOne; i++) {
-                        int temp = pages[i];
-                        pages[i] = pages[i + 1];
-                        pages[i + 1] = temp;
+                        std::swap(pages[indexOne], pages[indexTwo]);
                     }
                 }
+                everSwapped |= swapped;
             }
 
-            if (swapped) {
+            if (everSwapped) {
                 result += pages[pages.size()/2];  
-                for (int& page : pages) {
-                    std::cout << page << ',';
-                }
-                std::cout << std::endl;
             } 
         }
         return result;
@@ -78,7 +75,7 @@ int main(int argc, char* argv[]) {
     data->printInput(input_1);
     data->printInput(input_2);
     
-    std::cout << std::fixed << std::setprecision(0);
+    std::cout << std::fixed << std::setprecision(0) << std::endl;
 
     int answer = solution->taskOne(input_1, input_2);
     std::cout << "We calculate the answer to Day 5, Task 1 to be: " << answer << std::endl;
@@ -87,6 +84,11 @@ int main(int argc, char* argv[]) {
     answer = solution->taskTwo(input_1, input_2);
     std::cout << "We calculate the answer to Day 5, Task 2 to be: " << answer << std::endl;
     std::cin.get();
+
+    delete data;
+    data = nullptr;
+    delete solution;
+    solution = nullptr;
 
     return 0;
 }
