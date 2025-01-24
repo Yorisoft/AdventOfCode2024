@@ -20,6 +20,40 @@ This repository contains my personal solutions to the Advent of Code 2024 puzzle
 
 For this project, I'm using C++, along with any supporting libraries or tools that I find helpful. This is a learning experience, so you'll notice a variety of techniques and approaches as I work through the puzzles. Heck, you might even notice me switch up programming languages here and there. 
 
+## Progress
+☆  - Not complete
+⭐ - Completed
+
+
+| Day | Problem          | Stars  |
+|-----|------------------|--------|
+| 1   |Historian Hysteria| ⭐ ⭐ |
+| 2   |Red-Nosed Reports | ⭐ ⭐ |
+| 3   |Mull It Over      | ⭐ ⭐ |
+| 4   |Ceres Search      | ⭐ ⭐ |
+| 5   |Print Queue       | ⭐ ⭐ |
+| 6   |                  | ☆ ☆   |
+| 7   |                  | ☆ ☆   |
+| 8   |                  | ☆ ☆   |
+| 9   |                  | ☆ ☆   |
+| 10  |                  | ☆ ☆   |
+| 11  |                  | ☆ ☆   |
+| 12  |                  | ☆ ☆   |
+| 13  |                  | ☆ ☆   |
+| 14  |                  | ☆ ☆   |
+| 15  |                  | ☆ ☆   |
+| 16  |                  | ☆ ☆   |
+| 17  |                  | ☆ ☆   |
+| 18  |                  | ☆ ☆   |
+| 19  |                  | ☆ ☆   |
+| 20  |                  | ☆ ☆   |
+| 21  |                  | ☆ ☆   |
+| 22  |                  | ☆ ☆   |
+| 23  |                  | ☆ ☆   |
+| 24  |                  | ☆ ☆   |
+| 25  |                  | ☆ ☆   |
+
+
 ## Why Participate in Advent of Code?
 
 - **To Learn**: Enhance your coding skills by solving diverse and interesting problems.
