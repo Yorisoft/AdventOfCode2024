@@ -33,7 +33,7 @@ For this project, I'm using C++, along with any supporting libraries or tools th
 | 3   |Mull It Over      | ⭐ ⭐ |
 | 4   |Ceres Search      | ⭐ ⭐ |
 | 5   |Print Queue       | ⭐ ⭐ |
-| 6   |                  | ☆ ☆   |
+| 6   |Guard Gallivant   | ⭐ ☆   |
 | 7   |                  | ☆ ☆   |
 | 8   |                  | ☆ ☆   |
 | 9   |                  | ☆ ☆   |
