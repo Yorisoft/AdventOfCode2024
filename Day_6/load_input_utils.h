@@ -1,5 +1,4 @@
 #pragma once 
-#define _LOAD_INPUT_UTILS
 
 #include<iostream>
 #include<fstream>
@@ -7,6 +6,7 @@
 #include<string>
 #include<sstream>
 #include<iomanip>
+#include<set>
 
 class Input {
 private:
