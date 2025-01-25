@@ -12,6 +12,6 @@
 **/packages
 **packages.config
 **/AdventOf.F74CC3BE
-
+**/**.o
 # ignoring input files
 **/input**.txt
