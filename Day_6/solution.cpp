@@ -78,7 +78,7 @@ struct Solution {
             result += recursiveSearch(input, r, c, result);
         }
         
-        return result;
+        //return result;
     }
     //double taskTwo() {
 
